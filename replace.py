@@ -5,8 +5,8 @@ file_name = "serverless.yml"
 with open(file_name, encoding="cp932") as f:
     data_lines = f.read()
 
-CHANNEL_ACCESS_TOKEN = os.environ.get("CHANNEL_ACCESS_TOKEN")
-GROUPID = os.environ.get("GROUPID")
+CHANNEL_ACCESS_TOKEN = os.environ.["CHANNEL_ACCESS_TOKEN"]
+GROUPID = os.environ["GROUPID"]
 # 文字列置換
 data_lines = data_lines.replace("LINE_CHANNEL_ACCESS_TOKEN",CHANNEL_ACCESS_TOKEN)
 data_lines = data_lines.replace("LINE_GROUPID",GROUPID)
