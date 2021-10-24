@@ -17,6 +17,10 @@ jobs:
       - name: requirements install
         run: sh requirements.sh
 
+      - name: make serverless yml
+        run: sed -e 's/LINE_CHANNEL_ACCESS_TOKEN/${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}/g' serverless.yml
+        run: sed -e 's/LINE_GROUPID/${{ secrets.LINE_GROUPID }}/g' serverless.yml
+     
       - name: serverless deploy
         run: sls deploy
         env:

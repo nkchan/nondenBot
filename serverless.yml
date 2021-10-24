@@ -19,8 +19,8 @@ provider:
   runtime: python3.6
   lambdaHashingVersion: 20201221
   environment:
-    CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
-    GROUPID: ${{ secrets.LINE_GROUPID }}
+    CHANNEL_ACCESS_TOKEN: LINE_CHANNEL_ACCESS_TOKEN
+    GROUPID: LINE_GROUPID
 
 functions:
   tokyo-cron:
