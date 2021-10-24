@@ -18,9 +18,9 @@ jobs:
         run: sh requirements.sh
 
       - name: make serverless yml channel
-        run: sed  's/LINE_CHANNEL_ACCESS_TOKEN/${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}/g' serverless.yml
+        run: sed  '/LINE_CHANNEL_ACCESS_TOKEN/${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}/' serverless.yml
       - name: make serverless yml groupid
-        run: sed  's/LINE_GROUPID/${{ secrets.LINE_GROUPID }}/g' serverless.yml
+        run: sed  '/LINE_GROUPID/${{ secrets.LINE_GROUPID }}/' serverless.yml
      
       - name: serverless deploy
         run: sls deploy
