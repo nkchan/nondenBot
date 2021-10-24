@@ -8,10 +8,9 @@ jobs:
   deploy:
     name: deploy
     runs-on: ubuntu-latest
-    needs: test
     steps:
       - uses: actions/checkout@master
-      
+
       - name: npm install
         uses: actions/npm@master
         with:
