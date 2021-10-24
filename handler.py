@@ -10,7 +10,7 @@ def post_line(text):
     line_bot_api.push_message(os.environ["GROUPID"], TextSendMessage(text=text))
 
 def tokyo_cron(event, context):
-    text = "偶数の第一土曜はみんなでわいわい！！！！！(*´ω｀*)"
+    text = "偶数月の第一土曜はみんなでわいわい！！！！！(*´ω｀*)"
     post_line(text)
 
 def year_end(event, context):
