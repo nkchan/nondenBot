@@ -9,10 +9,11 @@ jobs:
     name: deploy
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@master
+      
       - name: make serverless yml channel
         run: python3 replace.py
 
-      - uses: actions/checkout@master
       - uses: actions/setup-node@v2
       - name: npm install
         run: npm install -g serverless
