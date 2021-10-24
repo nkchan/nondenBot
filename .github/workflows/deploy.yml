@@ -18,9 +18,7 @@ jobs:
         run: sh requirements.sh
 
       - name: make serverless yml channel
-        run: perl -ne 's/LINE_CHANNEL_ACCESS_TOKEN/${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}/' serverless.yml
-      - name: make serverless yml groupid
-        run: perl -ne 's/LINE_GROUPID/${{ secrets.LINE_GROUPID }}/' serverless.yml
+        run: python3 replace.py
      
       - name: serverless deploy
         run: sls deploy
