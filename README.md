@@ -48,7 +48,7 @@ $ sls deploy
 
 ## 技術的な話
 - Python3
-- [Serverless](https://www.serverless.com/) 
+- [Serverless](https://www.serverless.com/)
 - AWS Lambda
 - AWS S3
 - (間接的に)EventBridge

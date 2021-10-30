@@ -20,5 +20,3 @@ def year_end(event, context):
 def obon(event, context):
     text = "ぼちぼちお盆が近いので福岡で飲み会とかします？？"
     post_line(text)
-
-
