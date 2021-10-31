@@ -23,8 +23,6 @@ jobs:
 
       - name: requirements install
         run: sh requirements.sh
-
-
      
       - name: serverless deploy
         run: sls deploy
