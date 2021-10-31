@@ -40,11 +40,16 @@ functions:
 $ git clone git@github.com:nkchan/nondenBot.git
 $ cd nondenBot
 $ sh requirements.sh
+```
 
-serverless.ymlにチャンネルアクセストークンと投稿するグループorユーザIDを書く。
-$ sls deploy
+これで開発してprをお願いします。あとPRはtox通らないとだめにしてるので。ubuntuだったら
 
 ```
+# apt install tox
+$ tox .
+```
+
+でokにしてください。
 
 ## 技術的な話
 - Python3
