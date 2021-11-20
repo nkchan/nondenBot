@@ -20,6 +20,8 @@ jobs:
       - uses: actions/setup-node@v2
       - name: npm install
         run: npm install -g serverless
+      - name: install  serverless-python-requirements
+        run: sls plugin install -n serverless-python-requirements
 
       - name: requirements install
         run: sh requirements.sh
