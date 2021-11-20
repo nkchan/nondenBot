@@ -1,7 +1,7 @@
 import os
 
-from requirements.linebot import LineBotApi
-from requirements.linebot.models import TextSendMessage
+from linebot import LineBotApi
+from linebot.models import TextSendMessage
 # from requirements.linebot.exceptions import LineBotApiError
 
 
