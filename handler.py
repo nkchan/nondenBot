@@ -2,7 +2,7 @@ import os
 
 from requirements.linebot import LineBotApi
 from requirements.linebot.models import TextSendMessage
-from requirements.linebot.exceptions import LineBotApiError
+#from requirements.linebot.exceptions import LineBotApiError
 
 
 def post_line(text):
