@@ -3,6 +3,7 @@ frameworkVersion: '2'
 
 provider:
   name: aws
+  region: ap-northeast-1
   runtime: python3.6
   lambdaHashingVersion: 20201221
   environment:
