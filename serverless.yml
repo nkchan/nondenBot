@@ -25,8 +25,8 @@ functions:
   year-end:
     handler: handler.year_end
     events:
-    - schedule: cron(0 20 20 12 ? *)
+    - schedule: cron(0 20 15 12 ? *)
   obon:
     handler: handler.obon
     events:
-    - schedule: cron(0 20 10 8 ? *)
+    - schedule: cron(0 20 1 8 ? *)
