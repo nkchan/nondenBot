@@ -20,12 +20,12 @@ functions:
   tokyo-cron:
     handler: handler.tokyo_cron
     events:
-    - schedule: cron(0 20 20 1/1 ? *)
+    - schedule: cron(0 11 20 2-12/2 ? *)
   year-end:
     handler: handler.year_end
     events:
-    - schedule: cron(0 20 15 12 ? *)
+    - schedule: cron(0 11 15 2-12/2 ? *)
   obon:
     handler: handler.obon
     events:
-    - schedule: cron(0 20 1 8 ? *)
+    - schedule: cron(0 11 1 2-12/2 ? *)
