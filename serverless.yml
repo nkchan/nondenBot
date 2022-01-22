@@ -3,6 +3,7 @@ frameworkVersion: '2'
 
 provider:
   name: aws
+  region: ap-northeast-1
   runtime: python3.6
   lambdaHashingVersion: 20201221
   environment:
@@ -24,8 +25,8 @@ functions:
   year-end:
     handler: handler.year_end
     events:
-    - schedule: cron(0 11 15 2-12/2 ? *)
+    - schedule: cron(0 11 30 11 ? *)
   obon:
     handler: handler.obon
     events:
-    - schedule: cron(0 11 1 2-12/2 ? *)
+    - schedule: cron(0 11 15 7 ? *)
