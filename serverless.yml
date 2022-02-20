@@ -1,5 +1,4 @@
 service: nondenBot
-frameworkVersion: '2'
 
 provider:
   name: aws
