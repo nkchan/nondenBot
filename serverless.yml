@@ -21,7 +21,7 @@ functions:
   tokyo-cron:
     handler: handler.tokyo_cron
     events:
-    - schedule: cron(0 11 20 2-12/2 ? *)
+    - schedule: cron(0 11 20 1-12/2 ? *)
   year-end:
     handler: handler.year_end
     events:
