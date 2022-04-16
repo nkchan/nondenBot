@@ -3,7 +3,7 @@ service: nondenBot
 provider:
   name: aws
   region: ap-northeast-1
-  runtime: python3.6
+  runtime: python3.9
   lambdaHashingVersion: 20201221
   environment:
     CHANNEL_ACCESS_TOKEN: LINE_CHANNEL_ACCESS_TOKEN
