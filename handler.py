@@ -2,13 +2,11 @@ import os
 
 from linebot import LineBotApi
 from linebot.models import TextSendMessage
-# from requirements.linebot.exceptions import LineBotApiError
 
 
 def post_line(text):
     line_bot_api = LineBotApi(os.environ["CHANNEL_ACCESS_TOKEN"])
-    line_bot_api.push_message(os.environ["GROUPID"],
-                              TextSendMessage(text=text))
+    line_bot_api.push_message(os.environ["GROUPID"], TextSendMessage(text=text))
 
 
 def tokyo_cron(event, context):
