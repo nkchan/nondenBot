@@ -1,0 +1,77 @@
+name: Deploy Lambda
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - closed
+    paths:
+      - .github/workflows/lambda-deploy.yml
+      - handler.py
+      - pyproject.toml
+      - poetry.lock
+      - serverless.yml
+
+concurrency:
+  group: ${{ github.workflow }}--${{ github.base_ref }}
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: deploy
+    if: github.pull_request.merged == true
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Setup Node.js 16.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+
+      # NOTE: npm install ではなく、依存更新を行わない npm ci を使う
+      - name: Setup Install dependencies from package-lock.json
+        run: npm ci
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Setup Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+          installer-parallel: true
+
+      - name: Load cached venv
+        id: cached-poetry-dependencies
+        uses: actions/cache@v3
+        with:
+          path: .venv
+          key: venv-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('poetry.lock') }}
+          restore-keys: |
+            venv-${{ steps.setup-python.outputs.python-version }}-
+
+      # TODO: 多分最後の pip install はいらない。serverless-python-requirements プラグインが requirements.txt を見て
+      #       よしなにやってくれるはずなので。検証できたら消す
+      - name: Generate artifact
+        run: |
+          poetry export \
+            -f requirements.txt \
+            --output requirements.txt \
+            --without-hashes
+          poetry run pip install -r requirements.txt -t ./requirements
+
+      - name: serverless deploy
+        uses: serverless/github-action@v3.1
+        with:
+          args: -c "serverless plugin install --name serverless-python-requirements && serverless deploy -v"
+          entrypoint: /bin/sh
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          LINE_CHANNEL_ACCESS_TOKEN: ${{ secrets.LINE_CHANNEL_ACCESS_TOKEN }}
+          LINE_GROUPID: ${{ secrets.LINE_GROUPID }}

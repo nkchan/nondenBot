@@ -1,0 +1,51 @@
+name: Python lint
+
+on:
+  push:
+    branches-ignore:
+      - main
+    paths:
+      - .github/workflows/python-lint.yml
+      - handler.py
+      - pyproject.toml
+      - poetry.lock
+
+concurrency:
+  group: ${{ github.workflow }}--${{ github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: python lint
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Setup Python
+        id: setup-python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+          installer-parallel: true
+
+      - name: Load cached venv
+        id: cached-poetry-dependencies
+        uses: actions/cache@v3
+        with:
+          path: .venv
+          key: venv-${{ steps.setup-python.outputs.python-version }}-${{ hashFiles('poetry.lock') }}
+          restore-keys: |
+            venv-${{ steps.setup-python.outputs.python-version }}-
+
+      - name: Install dependencies
+        run: poetry install --no-interaction --no-root
+
+      - name: Run lint with pysen
+        run: |
+          poetry run pysen run lint

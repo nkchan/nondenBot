@@ -3,11 +3,11 @@ service: nondenBot
 provider:
   name: aws
   region: ap-northeast-1
-  runtime: python3.8
+  runtime: python3.10
   lambdaHashingVersion: 20201221
   environment:
-    CHANNEL_ACCESS_TOKEN: LINE_CHANNEL_ACCESS_TOKEN
-    GROUPID: LINE_GROUPID
+    CHANNEL_ACCESS_TOKEN: ${env:LINE_CHANNEL_ACCESS_TOKEN}
+    GROUPID: ${env:LINE_GROUPID}
 
 plugins:
   - serverless-python-requirements
