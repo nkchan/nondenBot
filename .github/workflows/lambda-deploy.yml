@@ -6,12 +6,6 @@ on:
       - main
     types:
       - closed
-    paths:
-      - .github/workflows/lambda-deploy.yml
-      - handler.py
-      - pyproject.toml
-      - poetry.lock
-      - serverless.yml
 
 concurrency:
   group: ${{ github.workflow }}--${{ github.base_ref }}
