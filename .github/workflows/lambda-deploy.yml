@@ -20,9 +20,10 @@ jobs:
       - uses: actions/checkout@master
 
       - name: Setup Node.js 16.x
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 16
+          cache: 'npm'
 
       # NOTE: npm install ではなく、依存更新を行わない npm ci を使う
       - name: Setup Install dependencies from package-lock.json
