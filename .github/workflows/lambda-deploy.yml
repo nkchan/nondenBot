@@ -17,17 +17,7 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@master
-
-      - name: Setup Node.js 16.x
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          cache: 'npm'
-
-      # NOTE: npm install ではなく、依存更新を行わない npm ci を使う
-      - name: Setup Install dependencies from package-lock.json
-        run: npm ci
+      - uses: actions/checkout@v3
 
       - name: Setup Python
         uses: actions/setup-python@v4
