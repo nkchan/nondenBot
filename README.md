@@ -37,7 +37,8 @@ functions:
 Python のパッケージ管理ツールとして [poetry](https://python-poetry.org/docs/) をインストールしてください。
 
 ## 使い方
-[こういう](https://developers.line.biz/ja/docs/messaging-api/getting-started/)ところを見てチャンネルなどなどを作成する。Messaging API を使っております。
+[こういう](https://developers.line.biz/ja/docs/messaging-api/getting-started/)ところを見てチャンネルなどなどを作成する。
+Messaging API を使っております。
 
 ```
 $ git clone git@github.com:nkchan/nondenBot.git
@@ -45,20 +46,22 @@ $ cd nondenBot
 $ poetry install
 ```
 
-これで開発して Pull-Request をお願いします。あと PR は lint 通らないとだめにしています。
+`poetry install` によって `.venv` 以下に Python の仮想環境ができます。
+VSCode / PyCharm などの Python IDE 機能を持つエディタを使っている場合、 `.venv` の中の Python をインタープリタに指定してください。
 
+これで開発して Pull-Request をお願いします。あと PR は lint 通ってからマージお願いします。
+
+もし linter に怒られた場合、次のコマンドでフォーマッタを実行して修正するなどしてください：
 ```console
 $ poetry run pysen run format
 ```
 
-でフォーマッタを実行して修正するなどしてください。
-
 ## 技術的な話
-- Python3
-- [Serverless](https://www.serverless.com/)
+- Python 3
+- [Serverless Framework](https://www.serverless.com/)
 - AWS Lambda
 - AWS S3
-- (間接的に)EventBridge
+- (間接的に) EventBridge
 
 FaaS でサクッとやってます。
 
